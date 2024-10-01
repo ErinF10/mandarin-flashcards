@@ -1,33 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  let unsortedCardPairs = [
+    {'Monday': '星期一'},
+    {'Tuesday': '星期二'},
+    {'Wednesday': '星期三'},
+    {'Thursday' : '星期四'},
+    {'Friday': '星期五'}
+  ];
+
+  let count = unsortedCardPairs.length;
+
+  const [cardPairs, setCardPairs] = useState([...unsortedCardPairs])
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [isFront, setIsFront] = useState(true);
+
+  //Shuffle the deck in place to recieve the array in semi-random order
+  const shuffleCards = () => {
+    //sort based on the return value of Math.random() - 0.5, which has a 50/50 chance
+    //of being negative, creating a 50/50 chance of each element being put in a certain spot
+    const shuffled = [...unsortedCardPairs].sort(() => Math.random() - 0.5);
+    setCardPairs(shuffled);
+    setCurrentCardIndex(0);
+  }
+  //Flips sides
+  const handleClick = () => {
+    setIsFront(!isFront)
+  }
+  //Move forward in the array when next button is clicked
+  const handleNext = () => {
+    if (currentCardIndex === cardPairs.length - 1) {
+      // If we've reached the end, shuffle and start over
+      shuffleCards();
+    } else {
+      setCurrentCardIndex(prevIndex => prevIndex + 1);
+    }
+    //Flip new cards back to the front
+    if (!isFront) {
+      setIsFront(true)
+    }
+  }
+
+  let currentCard = cardPairs[currentCardIndex];
+  let front = Object.keys(currentCard)[0];
+  let back = currentCard[front];
+
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='header'>
+        <h1>Chinese Mandarin Flashcards</h1>
+        <h3>Test out or refresh your mandarin skills here!</h3>
+        <p>Total flashcards: {count}</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className='flashcard-container'>
+        <div className='flashcard' onClick={handleClick}>
+          {
+            isFront ? <p className='front'>{front}</p> : 
+              <p className='back'>{back}</p>
+          }
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div className='button-container'>
+        <button onClick={handleNext}>Next</button>
+      </div>
+      
     </>
   )
 }
