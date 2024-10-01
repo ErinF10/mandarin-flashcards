@@ -16,7 +16,7 @@ function App() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isFront, setIsFront] = useState(true);
 
-  //instead of choosing a random, shuffle the deck and return a new array
+  //Shuffle the deck in place to recieve the array in semi-random order
   const shuffleCards = () => {
     //sort based on the return value of Math.random() - 0.5, which has a 50/50 chance
     //of being negative, creating a 50/50 chance of each element being put in a certain spot
@@ -24,9 +24,11 @@ function App() {
     setCardPairs(shuffled);
     setCurrentCardIndex(0);
   }
+  //Flips sides
   const handleClick = () => {
     setIsFront(!isFront)
   }
+  //Move forward in the array when next button is clicked
   const handleNext = () => {
     if (currentCardIndex === cardPairs.length - 1) {
       // If we've reached the end, shuffle and start over
@@ -34,6 +36,7 @@ function App() {
     } else {
       setCurrentCardIndex(prevIndex => prevIndex + 1);
     }
+    //Flip new cards back to the front
     if (!isFront) {
       setIsFront(true)
     }
