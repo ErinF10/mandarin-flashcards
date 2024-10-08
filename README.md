@@ -1,26 +1,26 @@
-# Web Development Project 2 - *Mandarin Flashcards*
+# Web Development Project 3 - *Mandarin Flashcards*
 
 Submitted by: **Erin Forrest**
 
 This web app: **Provides users with a way to test out their Chinese Mandarin knowledge**
 
-Time spent: **4** hours spent in total
+Time spent: **7** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [X] **The title of the card set and some information about it, such as a short description and the total number of cards are displayed**
-- [X] **A single card at a time is displayed, only showing one of the components of the information pair**
-- [X] **A list of card pairs is created**
-- [X] **Clicking on the card shows the corresponding component of the information pair**
-- [X] **Clicking the next button displays a random new card**
+- [x] **The user can enter their guess in a box before seeing the flipside of the card**
+- [x] **Clicking on a submit button shows visual feedback about whether the answer was correct or incorrect**
+- [x] **A back button is displayed on the card and can be used to return to the previous card in a set sequence**
+- [x] **A next button is displayed on the card and can be used to navigate to the next card in a set sequence**
 
 The following **optional** features are implemented:
 
-- [ ] Cards contains images in addition to or in place of text
-- [ ] Cards have different visual styles such as color based on their category
-  - [ ] *visual style implemented*
+- [ ] A shuffle button is used to randomize the order of the cards
+- [ ] A user's answer may be counted as correct even when it is slightly different from the target answer
+- [ ] A counter displays the user's current and longest streak of correct responses
+- [ ] A user can mark a card that they have mastered and have it removed from the pool of answers as well as added to a list of mastered cards
 
 The following **additional** features are implemented:
 
@@ -28,14 +28,12 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented required features:
+Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/user-attachments/assets/3566e70d-3650-40b3-84df-c93b06f8026f
-' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-![Mandarin_Flashcards_1](https://github.com/user-attachments/assets/3566e70d-3650-40b3-84df-c93b06f8026f)
+![Mandarin_Flashcards_2](https://github.com/user-attachments/assets/2b951345-7681-4936-8862-1129d3191d6b)
 
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with [Kap](https://getkap.co/)  
+GIF created with [Kap](https://getkap.co/) for macOS  
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
@@ -43,8 +41,7 @@ GIF created with [Kap](https://getkap.co/)
 
 ## Notes
 
-The most difficult portion was creating the randomness for the new cards, I had to 
-learn more about more complex aspects of state management.
+The main challenge was hadnling the user input from the form because I have not worked with forms before this project.
 
 ## License
 
