@@ -5,6 +5,8 @@ Submitted by: **Erin Forrest**
 This web app: **Provides users with a way to test out their Chinese Mandarin knowledge**
 
 Time spent: **7** hours spent in total
+- 5 on part 1
+- 2 on part 2
 
 ## Required Features
 
