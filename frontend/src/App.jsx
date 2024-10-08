@@ -15,6 +15,8 @@ function App() {
   const [cardPairs, setCardPairs] = useState([...unsortedCardPairs])
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isFront, setIsFront] = useState(true);
+  const [guess, setGuess] = useState("");
+  const [isCorrect, setIsCorrect] = useState('');
 
   //Shuffle the deck in place to recieve the array in semi-random order
   const shuffleCards = () => {
@@ -28,9 +30,22 @@ function App() {
   const handleClick = () => {
     setIsFront(!isFront)
   }
+
+  //Check if the guess is correct
+  const handleSubmit = (userInput) => {
+    event.preventDefault(); // Prevent form submission
+    if (guess === back) {
+      setIsCorrect('correct')
+    } else {
+      setIsCorrect('incorrect')
+    }
+    setGuess('')
+  }
+
   //Move forward in the array when next button is clicked
   const handleNext = () => {
     if (currentCardIndex === cardPairs.length - 1) {
+      
       // If we've reached the end, shuffle and start over
       shuffleCards();
     } else {
@@ -40,6 +55,18 @@ function App() {
     if (!isFront) {
       setIsFront(true)
     }
+    setIsCorrect('')
+  }
+
+  const handleBack = () => {
+    if (currentCardIndex > 0) {
+      setCurrentCardIndex(prevIndex => prevIndex - 1);
+    }
+    //Flip new cards back to the front
+    if (!isFront) {
+      setIsFront(true)
+    }
+    setIsCorrect('')
   }
 
   let currentCard = cardPairs[currentCardIndex];
@@ -66,7 +93,19 @@ function App() {
           }
         </div>
       </div>
+      <form onSubmit={handleSubmit} className='guess-container'>
+        <input
+          placeholder="Place your guess here"
+          value={guess}
+          onChange={(answer) => setGuess(answer.target.value)}
+          className={`guess-input ${isCorrect}`}
+        />
+        <button type='submit'>
+          Submit Guess
+        </button>
+      </form>
       <div className='button-container'>
+        <button onClick={handleBack}>Back</button>
         <button onClick={handleNext}>Next</button>
       </div>
       
